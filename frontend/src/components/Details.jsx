@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 export default function Component() {
     const user = useSelector((state) => state.counter.user);
 
     const fields = [
         { name: "Name", value: user.name },
         { name: "Address", value: user.address },
-        { name: "DOB", value: user. },
+        { name: "DOB", value: user.dob },
         { name: "Father", value: "John" },
         { name: "Mother", value: "Jane" },
         { name: "AA", value: "AA123456" },

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './profile.css'
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import {addUser} from '../features/state/stateSlice'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 const Profile = () => {
     const states = useSelector((state) => state.counter.user);
     const navigate = useNavigate();
+    const dispatch= useDispatch();
   const [formData, setFormData] = useState({
     name: states.name,
     address: '',
@@ -35,6 +37,7 @@ const Profile = () => {
     axios.patch('/api/user/updateProfile', {...formData, _id: states.id}).then((response) => {
       console.log(response.data);
     })
+    
     navigate('/home')
   };
 
