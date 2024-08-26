@@ -4,6 +4,8 @@ import bg from './bg.jpg';
 import bgText from './bgText.png';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
 
 const HomePage = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -21,6 +23,7 @@ const HomePage = () => {
                     <p className='mx-4' key={user._id}>{user.name}</p>
                     <p className='mx-4' key={user._id}>{user.dob.slice(0,10)}</p>
                     <p key={user._id}>{user.email}</p>
+                    <button className='p-1 rounded-md'>View All</button>
                 </div>
                 </div>
                         
@@ -67,24 +70,24 @@ const HomePage = () => {
                 <img src={bgText} alt="Background Text" className='w-[9em] rounded-full mx-5' />
                 <div className="relative" ref={dropdownRef}>
                     <img src="#" alt="profile" className='logo w-16 mx-4 curdor-pointer' onClick={toggleMenu} />
-                    {menuOpen && (
-                        <div className="dropdown-menu absolute top-full right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg">
-                            <ul className="list-none p-2">
-                                <li
-                                    className="p-2 hover:bg-gray-100 cursor-pointer"
-                                    onClick={() => console.log('View Profile clicked')}
-                                >
-                                    View Profile
-                                </li>
-                                <li
-                                    className="p-2 hover:bg-gray-100 cursor-pointer"
-                                    onClick={handleLogoutClick}
-                                >
-                                    Log Out
-                                </li>
-                            </ul>
+                {menuOpen && (
+                    <div className="dropdown-menu absolute top-full right-0 mt-2 w-48 bg-white border border-gray-300 rounded-lg shadow-lg">
+                        <div className='flex flex-col'>
+                            <Link to ='/profile'
+                                className="p-2 hover:bg-gray-100 cursor-pointer"
+                            >
+                                Update Profile
+                            </Link>
+                            <Link to='/details'>Profile</Link>
+                            <Link
+                                className="p-2 hover:bg-gray-100 cursor-pointer"
+                                onClick={handleLogoutClick}
+                            >
+                                Log Out
+                            </Link>
                         </div>
-                    )}
+                    </div>
+                )}
                 </div>
             </header>
 

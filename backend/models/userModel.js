@@ -38,6 +38,10 @@ const userSchema = new Schema({
     access :{
         type : Object,
         default : {}
+    },
+    nameArray :{
+        type : String,
+        default : ""
     }
 })
 

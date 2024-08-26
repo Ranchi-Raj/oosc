@@ -5,8 +5,9 @@ exports.createUser = async (req, res) => {
 try
 {
     const { name, username, dob, password } = req.body;
+    const nameArray = name.split(" ")[0];
 
-    const data = await User.create({ name, username, dob, password });
+    const data = await User.create({ name, username, dob, password, nameArray });
     res.json({
         status: 200,
         data: {
@@ -46,7 +47,7 @@ exports.searchUser = async (req, res) => {
     try{
     const username = req.body.username;
         
-    const data = await User.find({ name : username });
+    const data = await User.find({ nameArray : username  });
     
     res.json({
         status: 200,
@@ -58,5 +59,24 @@ exports.searchUser = async (req, res) => {
     catch(err){
         console.log(err)
         console.log("User not resgistered");
+    }
+}
+
+exports.updateProfile = async (req, res) => {
+
+    try{
+        const data = req.body;
+
+        const result = await User.updateOne({ _id : data._id }, data);
+        res.json({
+            status: 200,
+            data: {
+                result
+            }
+        });
+
+    }
+    catch(err){
+        console.log(err)
     }
 }
